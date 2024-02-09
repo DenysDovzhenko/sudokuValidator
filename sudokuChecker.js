@@ -20,6 +20,10 @@ let validSolution = (array) => {
         throw new Error("Value of sudoku cell cannot be less than 0")
     }
 
+    if (array.flat().includes(0)) {
+        return false
+    }
+
     const blockSize = Math.sqrt(array.length)
     let validArraySum = 0
     const validArray = Array.from({length: array.length}, (_, index) => { 
