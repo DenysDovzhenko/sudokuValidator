@@ -1,30 +1,26 @@
 let validSolution = (array) => {
-    if (array.flat().includes(0)) {
-        return false
-    }
-    
     const validArray = Array.from({length: array.length}, (_, index) => index + 1); 
         
     let blockLength = Math.sqrt(array.length)
     let getBlock = (sRow, sCol) => array.slice(sRow, sRow + blockLength).map(x => x.slice(sCol, sCol + blockLength))
    
-    let validateArray = (subArray) => {
+    let isWrongArray = (subArray) => {
         let subarraySorted = subArray.slice().sort()
-        return validArray.every((val, index) => val === subarraySorted[index])
+        return !validArray.every((val, index) => val === subarraySorted[index])
     }
 
     for (let i = 0; i < validArray.length; i++) {
         let row = array[i]
         let col = array.map(x => x[i])           
 
-        if (!(validateArray(row) && validateArray(col))) {
+        if (isWrongArray(row) && isWrongArray(col)) {
             return false
         }
 
         if (i % blockLength === 0) {
             for (let j = 0; j < validArray.length; j += blockLength) {
                 let block = getBlock(i, j)
-                if (!validateArray(block.flat())) {
+                if (isWrongArray(block.flat())) {
                     return false
                 }
             }
