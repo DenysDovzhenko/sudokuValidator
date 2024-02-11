@@ -6,8 +6,11 @@ Function returns false if array isn`t valid.
 This function is also helpful for boards with same block size (3x3 block, 4x4 block, 5x5 block, etc.)
 ## Variables
 `validArray` - const value. Representation of sorted valid data.
+
 `validArraySum` - value of validArray elements sum.
+
 `blockSize` - gets size of square block.
+
 ## Functions
 ### getBlock() 
 Gets 2D array representation of the block. 
